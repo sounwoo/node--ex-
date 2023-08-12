@@ -1,0 +1,122 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "TEST API Docs",
+        "description": "test api 문서입니다"
+    },
+    "host": "localhost:7000",
+    "servers": [
+        {
+            "url": "http://localhost:7000"
+        }
+    ],
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "Users",
+            "description": "User관련 API"
+        }
+    ],
+    "schemes": ["http"],
+    "paths": {
+        "/user": {
+            "get": {
+                "tags": ["Users"],
+                "description": "",
+                "summary": "전체 유저 조회",
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "properties": {
+                                    "id": {
+                                        "type": "string",
+                                        "example": "adfhttwerqwrasxczx"
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "example": "test"
+                                    },
+                                    "age": {
+                                        "type": "number",
+                                        "example": 1
+                                    }
+                                }
+                            },
+                            "example": [
+                                {
+                                    "id": "adfhttwerqwrasxczx",
+                                    "name": "test",
+                                    "age": 1
+                                },
+                                {
+                                    "id": "adfhttwerqwrasxczx2",
+                                    "name": "test2",
+                                    "age": 2
+                                }
+                            ]
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": ["Users"],
+                "description": "",
+                "summary": "유저 생성",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "example": "test"
+                                },
+                                "age": {
+                                    "type": "number",
+                                    "example": 1
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string",
+                                    "example": "adfhttwerqwrasxczx"
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "example": "test"
+                                },
+                                "age": {
+                                    "type": "number",
+                                    "example": 1
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string",
+                                    "example": "error메세지"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

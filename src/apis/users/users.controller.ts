@@ -19,10 +19,12 @@ class UserController {
     }
 
     async findUsers(_: Request, res: Response) {
+        // #swagger.tags = ['Users']
         res.status(200).json(await this.userService.findUsers());
     }
 
     async createUser(req: Request, res: Response) {
+        // #swagger.tags = ['Users']
         const createDTO = new CreateUserDTO(req.body);
         const errors = await validate(createDTO);
 
@@ -40,7 +42,7 @@ class UserController {
 
             res.status(200).json(user);
         } catch (error) {
-            res.status(400).json({ message: '서버문제' });
+            res.status(500).json({ error: '서버문제' });
         }
     }
 }
