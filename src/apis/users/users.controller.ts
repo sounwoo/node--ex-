@@ -25,20 +25,25 @@ class UserController {
 
     async createUser(req: Request, res: Response) {
         // #swagger.tags = ['Users']
+
         const createDTO = new CreateUserDTO(req.body);
         const errors = await validate(createDTO);
 
         // 유효성 검사 에러 체크
         if (errors.length > 0) {
             const errorMessage = errors.map((error) => {
-                const temp = error.constraints && Object.values(error.constraints);
+                const temp =
+                    error.constraints &&
+                    Object.values(error.constraints);
                 return `${error.property} : ${temp}`;
             });
             return res.status(400).json({ error: errorMessage });
         }
 
         try {
-            const user = await this.userService.createUser({ createDTO });
+            const user = await this.userService.createUser({
+                createDTO,
+            });
 
             res.status(200).json(user);
         } catch (error) {
