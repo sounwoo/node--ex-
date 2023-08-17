@@ -8,7 +8,8 @@
     "scripts": {
         "start:dev": "nodemon --exec ts-node src/app.ts",
         "start": "ts-node src/app.ts",
-        "crawling": "ts-node src/common/crawling.ts",
+        "axios": "ts-node src/common/axios.ts",
+        "pup": "ts-node src/common/puppeteer.ts",
         "swagger": "node src/swagger.ts"
     },
     "dependencies": {
@@ -22,6 +23,8 @@
         "express": "^4.18.2",
         "nodemon": "^3.0.1",
         "prisma": "^5.1.1",
+        "puppeteer": "^21.0.3",
+        "puppeteer-core": "^21.0.3",
         "swagger-autogen": "^2.23.5",
         "swagger-ui-express": "^5.0.0",
         "ts-node": "^10.9.1"
