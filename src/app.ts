@@ -6,7 +6,11 @@ import swaggerUi from 'swagger-ui-express';
 
 const app = express();
 //Swagger
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile, { explorer: true }));
+app.use(
+    '/api-docs',
+    swaggerUi.serve,
+    swaggerUi.setup(swaggerFile, { explorer: true }),
+);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

@@ -16,6 +16,7 @@ class UserController {
     init() {
         this.router.get('/', this.findUsers.bind(this));
         this.router.post('/', this.createUser.bind(this));
+        this.router.post('/', this.createUser.bind(this));
     }
 
     async findUsers(_: Request, res: Response) {
