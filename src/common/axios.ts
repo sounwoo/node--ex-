@@ -13,15 +13,12 @@ const crawiling = async () => {
     // graphql일때는 어떻게?? Qurey를 보낼것인가?
 
     const result = await axios.get(
-        'https://linkareer.com/list/activity',
+        'https://api.linkareer.com/graphql?operationName=CurrentUser&variables=%7B%7D&extensions=%7B%22persistedQuery%22%3A%7B%22version%22%3A1%2C%22sha256Hash%22%3A%22327cfd2823a61897e34e95f70b0441bae10d88d9dbac9e95a80265e1d2906006%22%7D%7D',
     );
+    console.log(result.data);
+    // const $ = cheerio.load(result.data);
 
-    const $ = cheerio.load(result.data);
-
-    const qqq = $('body ').html();
-    console.log(qqq);
-
-    // #__next > div > div > section:nth-child(2) > div.list-layout__Grid-sc-1ll7kdd-6.dnWnpw
+    // const qqq = $().html();
     // console.log(qqq);
 };
 
