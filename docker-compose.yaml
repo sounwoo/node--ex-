@@ -1,7 +1,7 @@
 version: '3.7'
 
 services:
-    test-mysql:
+    testmysql:
         image: mysql:latest
         container_name: test-mysql
         restart: always
@@ -10,6 +10,22 @@ services:
             MYSQL_ROOT_PASSWORD: root
         ports:
             - 3306:3306
+
+    elasticsearch:
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.7.1
+        container_name: elasticsearch
+        environment:
+            - discovery.type=single-node
+        ports:
+            - 9200:9200
+
+    kibana:
+        image: docker.elastic.co/kibana/kibana:7.7.1
+        container_name: kibana
+        ports:
+            - 5601:5601
+        environment:
+            ELASTICSEARCH_HOSTS: http://elasticsearch:9200
 
     backend:
         build:
@@ -20,12 +36,16 @@ services:
             - ./src:/backend/src
             - ./prisma:/backend/prisma
         depends_on:
-            - test-mysql
+            - testmysql
+            - elasticsearch
+        environment:
+            - ELASTICSEARCH_HOST=elasticsearch
+            - HEALTHCHECK_URL=http://elasticsearch:9200/_cluster/health?wait_for_status=green&timeout=10s&level=shards%2Cindices&pretty=
+            - HEALTHCHECK_INTERVAL=5s
         env_file:
             - .env
         ports:
             - 7000:7000
 
-volumes:
-    backend:
-    mysql:
+networks:
+    default:

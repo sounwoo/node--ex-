@@ -13,6 +13,7 @@
         "swagger": "node src/swagger.ts"
     },
     "dependencies": {
+        "@elastic/elasticsearch": "^7.7.1",
         "@prisma/client": "^5.1.1",
         "@types/node": "^20.4.9",
         "axios": "^1.4.0",
